@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+
+<html>
+
+
+
+
+<head>
+
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+</head>
+<body>
+
+
+  <div id="canvasArea">
+    <canvas id="c" width="800" height="500"> </canvas>
+  </div>
+
+
+  <div id="colorbox">
+    <div class="drawButton" id="red">
+        &nbsp;
+    </div>
+    <div class="drawButton" id="green">
+        &nbsp;
+    </div>
+    <div class="drawButton" id="blue">
+        &nbsp;
+    </div>
+    <div class="drawButton" id="orange">
+        &nbsp;
+    </div>
+  </div>
+
+
+
+  <div id="toolbox">
+    <div class="drawButton" id="square">
+      square
+    </div>
+    <div class="drawButton" id="circle">
+      circle
+    </div>
+    <div class="drawButton" id="line">
+      line
+    </div>
+
+  </div>
+
+<script>
+
+var drawStyle = "square";
+var drawingActive = 0;
+var lastx = 0;
+var lasty = 0;
+
+document.getElementById("colorbox").onclick = function(e)
+{
+  var c = canvas.getContext("2d");
+  c.fillStyle = e.srcElement.id;
+}
+
+document.getElementById("toolbox").onclick = function(e)
+{
+  drawStyle = e.srcElement.id;
+}
+
+
+var canvas = document.getElementById("c");
+
+
+var c = canvas.getContext("2d");
+c.fillStyle = "red";
+
+function drawSquare(x, y) {
+  c.fillRect(x, y, 20, 20);
+}
+
+
+function drawCircle(x, y) {
+  c.moveTo(x, y);
+  c.arc(x, y, 10, 0, 2*Math.PI);
+  c.fill();
+}
+
+function drawLine(x, y, x2, y2)
+{
+  c.moveTo(x, y);
+  c.lineTo(x2, y2);
+  c.stroke();
+}
+
+
+canvas.onmousemove = function(e) {
+  var ctx = canvas.getContext("2d");
+  if(drawingActive == 1)
+  {
+    if(drawStyle == "square")
+    {
+      drawSquare(e.clientX, e.clientY);
+    }
+    else if(drawStyle == "circle")
+    {
+      drawCircle(e.clientX, e.clientY);
+    }
+    else if(drawStyle == "line")
+    {
+      drawLine(lastx, lasty, e.clientX, e.clientY);
+    }
+
+    lastx = e.clientX;
+    lasty = e.clientY;
+  }
+}
+
+canvas.onmousedown = function(e)
+{
+  if(drawStyle == "circle")
+  {
+    drawCircle(e.clientX, e.clientY);
+  }
+  if(drawStyle == "square")
+  {
+    drawSquare(e.clientX, e.clientY);
+  }
+  if(drawLine == "square")
+  {
+    drawLine(e.clientX, e.clientY);
+  }
+  drawingActive = 1;
+  lastx = e.clientX;
+  lasty = e.clientY;
+}
+
+canvas.onmouseup = function(e)
+{
+  drawingActive = 0;
+}
+
+canvas.onmouseout = function(e)
+{
+  drawingActive = 0;
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>

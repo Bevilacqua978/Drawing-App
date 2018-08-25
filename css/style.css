@@ -1,0 +1,45 @@
+canvas {
+  border: 2px solid black; }
+
+#canvasArea {
+  vertical-align: top;
+  width: 800px;
+  height: 500px;
+  border: 2px solid green;
+  display: inline-block; }
+
+#colorbox {
+  vertical-align: top;
+  width: 200px;
+  height: 500px;
+  display: inline-block;
+  border: 2px solid red; }
+
+#toolbox {
+  vertical-align: top;
+  width: 1000px;
+  height: 200px;
+  border: 2px solid blue; }
+
+.drawButton {
+  border: 2px solid black;
+  display: inline-block;
+  width: 90px;
+  height: 60px;
+  margin: 2px;
+  text-align: center;
+  padding-top: 30px; }
+
+#red {
+  background-color: #ff0000; }
+
+#green {
+  background-color: #00ff00; }
+
+#blue {
+  background-color: #0000ff; }
+
+#orange {
+  background-color: #ff8000; }
+
+/*# sourceMappingURL=style.css.map */
